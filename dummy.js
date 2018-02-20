@@ -22,26 +22,39 @@ Exercises.create({
                 reps: 20,
                 routineId: routine.id,
                 exerciseId: exercise.id
-            })
+            }).then (routine_exercise => {
+                Workouts.create({
+                    date: '2018-02-20',
+                    routineId: routine.id
+                }).then (workout => {
+                    Actuals.create({
+                        setNum: 1,
+                        actualReps: 15,
+                        actualWgt: 'bw',
+                        excersiseId: routine_exercise.excersiseId,
+                        workoutId: workout.id
+                    })  
+                });
+            });
         });
     })
 
-Routines.findById(1).then (routine => {
-    Workouts.create({
-        date: '2018-02-20'
-    })
-})
+// Routines.findById(1).then (routine => {
+//     Workouts.create({
+//         date: '2018-02-20'
+//     }) 
+// })
 
-Workouts.findById(1).then (workout => {
-    Routines.findById(1).then(routine => {
-        Routine_exercise.findById(1).then(routine_exercise => {
-            Actuals.create({
-                setNum: 1,
-                actualReps: 15,
-                actualWgt: 'bw',
-                excersiseId: routine_exercise.excersiseId,
-                workoutId: workout.id
-            })
-        })
-    })
-})
+// Workouts.findById(1).then (workout => {
+//     Routines.findById(1).then(routine => {
+//         Routine_exercise.findById(1).then(routine_exercise => {
+//             Actuals.create({
+//                 setNum: 1,
+//                 actualReps: 15,
+//                 actualWgt: 'bw',
+//                 excersiseId: routine_exercise.excersiseId,
+//                 workoutId: workout.id
+//             })
+//         })
+//     })
+// })
