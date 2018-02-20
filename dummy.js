@@ -11,24 +11,20 @@ Exercises.create({
     picPath: './strengthApp/pics/',
     videoPath: './strengthApp/video/',
     instructions: "Starting Position: Kneel on an exercise mat or flooher behind you..."
-})
-
-Routines.create({
-    routineName: 'Strength with Calisthenics'
-})
-
-Exercises.findById(1).then (exercise => {
-    Routines.findById(1).then (routine => {
-        Routine_exercise.create({
-            orderNum: 1,
-            weight: 'bw',
-            sets: 2,
-            reps: 20,
-            routineId: routine.id,
-            exerciseId: exercise.id
-        })
+}).then (exercise => {
+        Routines.create({
+            routineName: 'Strength with Calisthenics'
+        }).then (routine => {
+            Routine_exercise.create({
+                orderNum: 1,
+                weight: 'bw',
+                sets: 2,
+                reps: 20,
+                routineId: routine.id,
+                exerciseId: exercise.id
+            })
+        });
     })
-})
 
 Routines.findById(1).then (routine => {
     Workouts.create({
