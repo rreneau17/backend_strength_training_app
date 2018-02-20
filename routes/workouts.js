@@ -12,22 +12,22 @@ router.route('/')
             res.json(allWorkouts);
         });
     })
-//   .post((req, res) => {
+    .post((req, res) => {
 
-//     console.log(req.body);
+        console.log(req.body);
 
-//     Workouts.create({
-//       date: req.body.date
-//     }).then(workout => {
-//         Actuals.create({
-//             setNum: req.body.setNum,
-//             actualReps: req.body.actualReps,
-//             actualWgt: req.body.actualWgt,
-//             routineId: req.body.routineId,
-//             exerciseId: req.body.exerciseId,
-//             workoutId: workout.Id
-//         })
-//     });
-//   }) 
+        Workouts.create({
+        date: req.body.date
+        }).then(workout => {
+            Actuals.create({
+                setNum: req.body.setNum,
+                actualReps: req.body.actualReps,
+                actualWgt: req.body.actualWgt,
+                routineId: req.body.routineId,
+                exerciseId: req.body.exerciseId,
+                workoutId: workout.id
+            })
+        });
+    }) 
 
 module.exports = router;
