@@ -14,11 +14,39 @@ router.route('/')
         console.log('Get is working');
         Routines.findOne({where: {active: true} })
         .then (routine => {
-            console.log('The routine Id is: ' + routine.id);
             Routine_exercise.findAll({where: {routineId: routine.id} })
             .then (results => {
-                console.log('Dev is working!!!')
-                res.json(results);
+                const exercisePromises = results.map(result => {
+                    return Exercises.findOne({where: {id: result.exerciseId} })
+                    // .then (exercise => {
+                        
+                        // res.json(exercise);
+                    // })
+                })
+                Promise.all(exercisePromises) 
+                .then (exerciseResults => {
+                    let exerciseArray = results.map((result, i) => {
+                        return {
+                            // ...result, 
+                            exerciseName: exerciseResults[i].exerciseName,
+                            orderNum: result.orderNum,
+                            weight: result.weight,
+                            reps: result.reps,
+                            sets: result.sets
+                        }
+                    })
+                    let rntResults = {
+                        routineName: routine.routineName,
+                        routineId: routine.id,
+                        exercises: exerciseArray
+
+                    }
+                    console.log(rntResults);
+                    res.json(rntResults);
+
+
+                })
+
             })
         })
     }) 
