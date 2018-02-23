@@ -65,13 +65,16 @@ router.route('/')
         date: req.body.date,
         routineId: req.body.routineId
         }).then(workout => {
-            Actuals.create({
-                setNum: req.body.setNum,
-                actualReps: req.body.actualReps,
-                actualWgt: req.body.actualWgt,
-                exerciseId: req.body.exerciseId,
-                workoutId: workout.id
+            req.body.actuals.forEach(actual => {
+                Actuals.create({
+                    setNum: actual.setNum,
+                    actualReps: actual.actualReps,
+                    actualWgt: actual.actualWgt,
+                    exerciseId: actual.exerciseId,
+                    workoutId: workout.id
+                })
             })
+            
         });
     }) 
 
