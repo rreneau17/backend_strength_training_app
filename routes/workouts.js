@@ -14,7 +14,10 @@ router.route('/')
         console.log('Get is working');
         Routines.findOne({where: {active: true} })
         .then (routine => {
-            Routine_exercise.findAll({where: {routineId: routine.id} })
+            Routine_exercise.findAll({
+                where: {routineId: routine.id}, 
+                order: sequelize.col('orderNum')
+            })
             .then (results => {
                 const exercisePromises = results.map(result => {
                     return Exercises.findOne({where: {id: result.exerciseId} })
@@ -29,6 +32,7 @@ router.route('/')
                         return {
                             // ...result, 
                             exerciseName: exerciseResults[i].exerciseName,
+                            exerciseId: result.exerciseId,
                             orderNum: result.orderNum,
                             weight: result.weight,
                             reps: result.reps,
@@ -58,9 +62,8 @@ router.route('/')
     //     })
     // })
     .post((req, res) => {
-
+        console.log('posting actuals...');
         console.log(req.body);
-
         Workouts.create({
         date: req.body.date,
         routineId: req.body.routineId
@@ -74,7 +77,7 @@ router.route('/')
                     workoutId: workout.id
                 })
             })
-            
+            res.send({success: true});
         });
     }) 
 
