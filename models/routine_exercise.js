@@ -8,7 +8,7 @@ const Routine_exercise = sequelize.define('routine_exercise', {
     type: Sequelize.INTEGER
   },
   weight: {
-    type: Sequelize.STRING
+    type: Sequelize.INTEGER
   },
   sets: {
     type: Sequelize.INTEGER

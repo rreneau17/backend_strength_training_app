@@ -1,8 +1,138 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html, body{
+  width:100%;
+  height:100%;
+  box-sizing: border-box;
+  background-color:eee;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+  margin: 0;
+  padding: 0;
+}
+
+*,*:before, *:after{
+  box-sizing: inherit;
+}
+
+header {
+  background-color: #24292e;
+  /* flex: 1 1 auto; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 85px;
+}
+
+.logo {
+  width: 400px;
+  color: white;
+  font-size: 1.8em;
+  margin-left: 10%;
+  font-weight: bolder;
+}
+
+.nav {
+  width: 400px; 
+  color: white;
+  margin-right: 6%;
+}
+
+.nav ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+}
+
+.nav a {
+  color: white;
+  font-size: 1.2em;
+}
+
+
+.background-pic {
+  background-image: url("../images/group_training.jpeg");
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+  background-size: cover;
+}
+
+.features {
+  background-color: #f3f3f3;
+  display: block;
+}
+
+.features-item {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 40px;
+}
+
+.features-item img {
+  border-radius: 50%;
+  border-color: lightgray;
+  border-style: solid;
+  border-width: 7px;
+  height: 225px;
+  width: 225px;
+}
+
+.rtn-container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: #24292e;
+}
+
+.rtn-thumbnail-item {
+  width: 20%;
+  text-align: center;
+  margin: 3%;
+}
+
+.rtn-thumbnail-item img {
+  height: 300px;
+  width: 300px;
+}
+
+.rtn-thumbnail-item p {
+  margin: 20px;
+  font-size: 2em;
+  color: white;
+}
+
+footer {
+  background-color: #24292e;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+}
+
+footer ul {
+  display: flex;
+  list-style-type: none;
+}
+
+footer a {
+  display: block;
+  color: white;
+  font-size: 1.2em;
+  margin: 30px;
+}
+
+.center {
+  text-align: center;
+}
+
+.cover {
+  object-fit: cover;
 }

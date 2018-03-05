@@ -10,7 +10,10 @@ const Actuals = sequelize.define('actuals', {
     type: Sequelize.INTEGER
   },
   actualWgt: {
-    type: Sequelize.STRING
+    type: Sequelize.INTEGER
+  },
+  exerciseId: {
+    type: Sequelize.INTEGER
   }
 });
 

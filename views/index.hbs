@@ -1,2 +1,26 @@
-<h1>{{title}}</h1>
+{{!-- <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+<p>{{stuff}}</p> --}}
+<div class="background-pic"></div>
+<div class="features">
+    <div class="features-item">
+        <img src="../images/fitbit.jpg" class="cover">
+    </div>
+    <div class="features-item">
+        <img src="../images/up_arrow.jpg" class="cover">
+    </div>
+    <div class="features-item">
+        <img src="../images/ex_library.jpeg" class="cover">
+    </div>
+    <div class="features-item">
+        <img src="../images/group_features.jpg" class="cover">
+    </div>
+</div>
+<div class="rtn-container">
+    {{#each routines}}
+    <div class="rtn-thumbnail-item">
+        <img src="{{routinePic}}" class="cover">
+        <p>{{routineName}}</p>
+    </div>    
+    {{/each}}
+</div>
