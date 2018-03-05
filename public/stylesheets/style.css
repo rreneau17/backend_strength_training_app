@@ -150,3 +150,7 @@ footer a {
 .cover {
   object-fit: cover;
 }
+
+.routines {
+  padding: 50px;
+}
