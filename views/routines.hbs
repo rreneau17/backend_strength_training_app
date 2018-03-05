@@ -1,0 +1,16 @@
+<div class="routines">
+    <h1>{{rntResults.routineName}}</h1>
+    <br><br>
+    <form action="/action_page.php">
+    {{#each rntResults.exercises}}
+        <input type="text" name="Exercise" value="{{exerciseName}}">
+        <input type="text" name="Reps" value="{{weight}}">
+        <input type="text" name="Sets" value="{{reps}}">
+        <input type="text" name="Sets" value="{{sets}}">
+        <br><br>
+    {{/each}}
+    <br><br>
+    <input type="submit" value="Save Changes">
+    </form>
+</div> 
+
