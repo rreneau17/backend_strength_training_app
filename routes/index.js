@@ -11,17 +11,57 @@ const Exercises = require('../models/exercises');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  let rntAll = [];
   Routines.findAll()
       .then (routines => {
-          // const actualsPromises = workouts.map(workout => {
-          //     return Actuals.findAll({where: {workoutId: workout.id} })
-          // })
-          // Promise.all(actualsPromises)
-          // .then (actResults => {
-          //     res.json(actResults);    
-          // })
-          // res.json(workouts); 
-          res.render('index', {routines});   
+        routines.forEach(routine=> {
+          Routine_exercise.findAll({
+            where: {routineId: routine.id}, 
+            order: sequelize.col('orderNum')
+          }).then (results => {
+            const exercisePromises = results.map(result => {
+                return Exercises.findOne({where: {id: result.exerciseId} })
+                // .then (exercise => {
+                    
+                    // res.json(exercise);
+                // })
+            })
+            Promise.all(exercisePromises) 
+            .then (exerciseResults => {
+                let exerciseArray = results.map((result, i) => {
+                    return {
+                        // ...result, 
+                        exerciseName: exerciseResults[i].exerciseName,
+                        exerciseId: result.exerciseId,
+                        orderNum: result.orderNum,
+                        weight: result.weight,
+                        reps: result.reps,
+                        sets: result.sets
+                    }
+                })
+                let rntResults = {
+                    routineName: routine.routineName,
+                    routineId: routine.id,
+                    routineURL: routine.routineURL,
+                    routinePic: routine.routinePic,
+                    exercises: exerciseArray
+
+                }
+                // console.log(rntResults);
+                // res.json(rntResults);
+                rntAll.push(rntResults);
+                if (rntAll.length === routines.length) {
+                  // res.json(rntAll);
+                  res.render('index', {
+                    
+                    rntAll,
+                    rntAllString: JSON.stringify(rntAll)
+                  
+                  });
+                }
+            })
+          })
+        })  
       })
       
 });
