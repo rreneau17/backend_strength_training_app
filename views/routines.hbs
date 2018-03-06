@@ -1,16 +1,31 @@
-<div class="routines">
-    <h1>{{rntResults.routineName}}</h1>
-    <br><br>
-    <form action="/action_page.php">
-    {{#each rntResults.exercises}}
-        <input type="text" name="Exercise" value="{{exerciseName}}">
-        <input type="text" name="Reps" value="{{weight}}">
-        <input type="text" name="Sets" value="{{reps}}">
-        <input type="text" name="Sets" value="{{sets}}">
-        <br><br>
-    {{/each}}
-    <br><br>
-    <input type="submit" value="Save Changes">
-    </form>
-</div> 
-
+<div class="routines-container">
+    <div class="routines-top-lt">
+        <img src="{{rntResults.routinePic}}" class="cover">
+    </div>
+    <div class="routines-top-rt">
+        <br>
+        <h1>{{rntResults.routineName}}</h1><br><br>
+        {{#if rntResults.active}}<h3 style="color: #ff9a00">ACTIVE</h3>{{else}}<h3>NOT ACTIVE</h3>{{/if}}<br><br><br>
+        <button onclick="getInstructions('{{rntResults.routineURL}}')" class="button-routines">VIEW INSTRUCTIONS</button>
+        <br><br><br>
+        <button onclick="location.href='/routines/{{rntResults.routineId}}/edit'" class="button-routines">EDIT ROUTINE</button>
+    </div>
+    <div class="routines-exercises">
+        <table>
+            <tr>
+                <th scope="col" style="padding-right: 150px;">Exercise</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Sets</th>
+                <th scope="col">Reps</th>
+            </tr>
+            {{#each rntResults.exercises}}
+            <tr>
+                <td>{{exerciseName}}</td>
+                <td>{{weight}}</td>
+                <td>{{reps}}</td>
+                <td>{{sets}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>

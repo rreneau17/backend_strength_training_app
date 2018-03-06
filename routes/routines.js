@@ -42,11 +42,15 @@ router.get('/:routineId', function(req, res, next) {
                 let rntResults = {
                     routineName: routine.routineName,
                     routineId: routine.id,
+                    routineURL: routine.routineURL,
+                    routinePic: routine.routinePic,
+                    active: routine.active,
                     exercises: exerciseArray
 
                 }
-                console.log(rntResults);
-                res.json(rntResults);
+                // console.log(rntResults);
+                // res.json(rntResults);
+                res.render('routines', {rntResults});
 
 
             })
@@ -87,17 +91,34 @@ router.get('/:routineId/edit', function(req, res, next) {
                 let rntResults = {
                     routineName: routine.routineName,
                     routineId: routine.id,
+                    routineURL: routine.routineURL,
+                    routinePic: routine.routinePic,
+                    active: routine.active,
                     exercises: exerciseArray
 
                 }
                 console.log(rntResults);
                 // res.json(rntResults);
-                res.render('routines', {rntResults});
+                res.render('routinesEdit', {rntResults});
             })
 
         })
     })
 })
+.post('/:routineId/:exerciseId/edit', (req, res) => {
+    Routine_exercise.findOne({
+      where: {
+        routineId: req.params.routineId,
+        exerciseId: req.params.exerciseId
+      }
+    }).then(results => {
+      return results.update({
+        weight: req.body.weight,
+        reps: req.body.reps,
+        sets: req.body.sets
+      }).then (() => res.json({success:true}));
+    })
+  })
 
 
 module.exports = router;
