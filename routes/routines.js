@@ -105,7 +105,28 @@ router.get('/:routineId/edit', function(req, res, next) {
         })
     })
 })
-.post('/:routineId/:exerciseId/edit', (req, res) => {
+.post('/:routineId/active/edit', (req, res) => {
+    console.log('we are editing active routine');
+    Routines.findOne({
+        where: {
+            id: req.params.routineId
+        }
+    }).then(routines => {
+        console.log(req.body.active);
+        if(req.body.active === 'true') {
+            return routines.updateAttributes({
+                active: true
+            }).then (() => res.json({success:true}))
+        } else {
+            return routines.updateAttributes({
+                active: false
+            }).then (() => res.json({success:true}))
+        }          
+    })
+})
+.post('/:routineId(\\d+)/:exerciseId(\\d+)/edit', (req, res) => {
+    // reg ex above to explicitly accept number for exerciseId and routineId
+    console.log('we are editing an exercise');
     Routine_exercise.findOne({
       where: {
         routineId: req.params.routineId,
@@ -119,6 +140,7 @@ router.get('/:routineId/edit', function(req, res, next) {
       }).then (() => res.json({success:true}));
     })
   })
+
 
 
 module.exports = router;
