@@ -2,25 +2,62 @@
 <p>Welcome to {{title}}</p>
 <p>{{stuff}}</p> --}}
 <div class="background-pic"></div>
-<div class="features">
+<div id="features">
         <h2>FEATURES</h2>
     <div class="features-item">
-        <img src="../images/fitbit.jpg" class="cover">
+        <div class="features-lt">
+            <h3>Workout Tracking</h3>
+            <br>
+            <p>Have the convenience of entering your strength training sessions directly into your fitbit ionic. Your logs are automatically submitted to the cloud after every session.</p>
+        </div>
+        
+        <div class="features-mid">
+            <img src="../images/fitbit.jpg" class="cover">
+        </div>
+        <div class="features-rt">
+        </div>
     </div>
     <div class="vertical-line"></div>
     <div class="features-item">
-        <img src="../images/up_arrow.jpg" class="cover">
+        <div class="features-lt">
+        </div>
+        <div class="features-mid">
+            <img src="../images/up_arrow.jpg" class="cover">
+        </div>
+        <div class="features-rt">
+            <h3>Report Progress</h3>
+            <br>
+            <p>Have the convenience of entering your strength training sessions directly into your fitbit ionic. Your logs are automatically submitted to the cloud after every session.</p>
+        </div>
     </div>
     <div class="vertical-line"></div>
     <div class="features-item">
-        <img src="../images/ex_library.jpeg" class="cover">
+        <div class="features-lt">
+            <h3>Exercise Library</h3>
+            <br>
+            <p>Have the convenience of entering your strength training sessions directly into your fitbit ionic. Your logs are automatically submitted to the cloud after every session.</p>
+        </div>
+        <div class="features-mid">
+            <img src="https://cdn-mf0.heartyhosting.com/sites/mensfitness.com/files/styles/exercise_step_image/public/potrait-step-imagedboverheadpress2.jpg?itok=QOvA4_4T" class="cover">
+        </div>
+        <div class="features-rt">
+        </div>
     </div>
     <div class="vertical-line"></div>
     <div class="features-item">
-        <img src="../images/group_features.jpg" class="cover">
+        <div class="features-lt">
+        </div>
+        <div class="features-mid">
+            <img src="../images/group_features.jpg" class="cover">
+        </div>
+        <div class="features-rt">
+            <h3>Social Fitness Network</h3>
+            <br>
+            <p>Have the convenience of entering your strength training sessions directly into your fitbit ionic. Your logs are automatically submitted to the cloud after every session.</p>
+        </div>
     </div>
 </div>
-<div class="rtn-container">
+<div id="rtn-container">
     {{#each rntAll}}
     <div class="rtn-thumbnail-item" data-search-route="{{routineId}}">
         <img src="{{routinePic}}" class="cover">
