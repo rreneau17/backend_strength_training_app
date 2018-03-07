@@ -11,28 +11,66 @@ const Routine_exercise = require('../models/routine_exercise');
 const Exercises = require('../models/exercises');
 
 router.get('/', function(req, res, next) {
-    wrkAll = [];
+    let wrkAll = [];
     var d = new Date();
     d.setDate(d.getDate() - 7);
     Workouts.findAll({where: {date: {[Op.gt]: d}} 
     }).then (workouts => {
-        workouts.forEach(workout => {
-            Actuals.findAll({where: 
-                {workoutId: workout.id} 
-            }).then (actuals => {
-                let actualsArray = actuals.map(actual => {
-                    Exercises.findOne({where: {id: actual.exerciseId} })
-                    .then (exercise => {
+        let workoutPromises = workouts.map(workout => {
+            return Actuals.findAll({
+                where: {workoutId: workout.id},
+            })
+            //.then (actuals => {
+                // let actualsPromises = actuals.map(actual => {
+                //     return Exercises.findOne({where: {id: actual.exerciseId} })
+                //     .then (exercise => {
+                //         return {
+                //             ...actual,
+                //             exerciseName: exercise.exerciseName
+                //         }
+                //         // res.json(exercise);
+                //     })
+                // })
+                // Promise.all(actualsPromises) 
+                // .then (promisesResults => {
+                //     res.json(promisesResults);
+                // })
+            //     return actuals;
+            // })
+            
+        })
+        console.log("about to Promise.all");
+        Promise.all(workoutPromises).then (workoutActuals => {
+            console.log('promise.all is working');
+            let exercisePromises = workoutActuals.map(actualsArray=> {
+                let exercisesArray = [];
+                actualsArray.forEach(act => {
+                    exercisesArray = exercisesArray.concat(Exercises.findOne({where: {id: act.exerciseId} }))
+                    
+                })
+                 return exercisesArray;
+            })
+            Promise.all(exercisePromises).then (exerciseResults => {
+                console.log(exerciseResults.length);
+                let actualsWithResults = workoutActuals.map((actArray, i) => {
+                    return actArray.map(a => {
+                        console.log(a);
+                        let e = exerciseResults.find(x => x.id === a.exerciseId);
                         return {
-                            weight: actual.actualWgt,
-                            exerciseName: exercise.exerciseName
+                            ...a,
+                            // exerciseName: e.exerciseName
                         }
                     })
+                    
                 })
+                console.log("about to send json");
+                res.json(actualsWithResults);
             })
+            // res.json(workoutActuals);
+        });
 
-        })
-            res.render('results', {workouts});
+            //res.json(wrkAll);
+            // res.render('results', {workouts});
                
     })
 });
