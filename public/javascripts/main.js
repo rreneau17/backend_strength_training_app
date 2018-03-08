@@ -1,7 +1,44 @@
 var RTN_THUMBNAIL_ITEM_SEL = '.rtn-thumbnail-item';
 var rtnThumbnailItem = document.querySelectorAll(RTN_THUMBNAIL_ITEM_SEL);
 
+let routines = [{
+    id: 1,
+    routineName: "Basic Strength"
+    },
+    {
+        id: 2,
+        routineName: "The 9-Minute Strength Workout"
+    },
+    {
+        id: 3,
+        routineName: "Women's Body Weight Workout"
+    }
+]
 
+function printWrk() {
+    workouts.map(workout=> {
+        routines.forEach(routine=> {
+            let routineName;
+            if(workout.routineId === routine.id) {
+                routineName = routine.routineName; 
+            }
+        })
+        actuals.map((actual) => {
+            console.log(actual.workoutId);
+            if(workout.id = actual.workoutId) {
+                exercises.forEach(exercise=> {
+                    let exerciseName;
+                    if(actual.exerciseId = exercise.id) {
+                        exerciseName = exercise.exerciseName;
+                    }
+                    return exerciseName;
+                })
+                
+            }
+        })
+        // console.log(actuals);
+    })
+}
 
 function rtnListener() {
     rtnThumbnailItem.forEach(item => {
@@ -55,7 +92,19 @@ function validateForm() {
     }
 }
 
+
+
+
+
+
+
+
 function main() {
+    // console.log(actuals);
+    // console.log(workouts);
+    // console.log(exercises);
+    // console.log(routines);
+    // printWrk();
     rtnListener();
     // subForms();
     // getInstructions();

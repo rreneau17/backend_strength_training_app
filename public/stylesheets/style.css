@@ -143,6 +143,10 @@ header {
   width: 300px;
 }
 
+.rtn-thumbnail-item a {
+  text-decoration: none;
+}
+
 .rtn-thumbnail-item p {
   margin: 20px;
   font-size: 2em;
@@ -224,6 +228,32 @@ header {
 }
 
 .routines-exercises tr {
+  font-size: 1.3em;
+}
+
+th, td {
+  padding-top: 15px;
+  padding-right: 50px;
+}
+
+.results-container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 50px;
+}
+
+.results-exercises {
+  width: 100%;
+  padding: 30px;
+}
+
+.results-exercises th {
+  font-size: 1.1em;
+}
+
+.results-exercises tr {
   font-size: 1.3em;
 }
 

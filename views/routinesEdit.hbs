@@ -8,7 +8,7 @@
 </header>
 <div class="routines-edit-container">
     <h1>{{rntResults.routineName}}</h1>
-    <br><br>
+    {{!-- <br><br>
     {{#if rntResults.active}}
         <form action="/routines/{{rntResults.routineId}}/active/edit" method="POST" target="_blank">
             Active: &nbsp;<input type="checkbox" name="active" value="true" checked="checked">
@@ -17,7 +17,7 @@
         <form action="/routines/{{rntResults.routineId}}/active/edit" method="POST" target="_blank">
             Active: &nbsp;<input type="checkbox" name="active" value="true">
         </form>
-    {{/if}}
+    {{/if}} --}}
     <br><br>
     {{#each rntResults.exercises}}
     <form action="/routines/{{../rntResults.routineId}}/{{exerciseId}}/edit" method="POST" target="_blank">
