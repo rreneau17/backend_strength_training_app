@@ -39,34 +39,42 @@ router.get('/', function(req, res, next) {
             // })
             
         })
+        console.log(workouts);
         console.log("about to Promise.all");
         Promise.all(workoutPromises).then (workoutActuals => {
             console.log('promise.all is working');
-            let exercisePromises = workoutActuals.map(actualsArray=> {
-                let exercisesArray = [];
-                actualsArray.forEach(act => {
-                    exercisesArray = exercisesArray.concat(Exercises.findOne({where: {id: act.exerciseId} }))
+            res.json(workoutActuals);
+            // let exercisePromises = workoutActuals.map(actualsArray=> {
+            //     let exercisesArray = [];
+            //     actualsArray.forEach(act => {
+            //         exercisesArray = exercisesArray.concat(Exercises.findOne({where: {id: act.exerciseId} }))
                     
-                })
-                 return exercisesArray;
-            })
-            Promise.all(exercisePromises).then (exerciseResults => {
-                console.log(exerciseResults.length);
-                let actualsWithResults = workoutActuals.map((actArray, i) => {
-                    return actArray.map(a => {
-                        console.log(a);
-                        let e = exerciseResults.find(x => x.id === a.exerciseId);
-                        return {
-                            ...a,
-                            // exerciseName: e.exerciseName
-                        }
-                    })
+            //     })
+            //      return exercisesArray;
+            // })
+            // Promise.all(exercisePromises).then (exerciseResults => {
+            //     console.log(exerciseResults.length);
+            //     let actualsWithResults = workoutActuals.map((actArray, i) => {
+            //         let exercisesPromisesForActuals = exerciseResults[i];
+            //         console.log('about to merge actuals and exercises');
+            //         return Promise.all(exercisesPromisesForActuals).then(exercisesForActuals => {
+            //             return actArray.map((a, j) => {
+            //                 console.log(a);
+            //                 let e = exercisesForActuals[j];
+            //                 // debugger;
+            //                 return {
+            //                     ...a,
+            //                     exerciseName: e.exerciseName
+            //                 }
+            //             })
+            //         })
                     
-                })
-                console.log("about to send json");
-                res.json(actualsWithResults);
-            })
-            // res.json(workoutActuals);
+                    
+            //     })
+            //     console.log("about to send json");
+            //     res.json(actualsWithResults);
+            // })
+            
         });
 
             //res.json(wrkAll);
