@@ -22,9 +22,9 @@
     {{#each rntResults.exercises}}
     <form action="/routines/{{../rntResults.routineId}}/{{exerciseId}}/edit" method="POST" target="_blank">
         Exercise: &nbsp;&nbsp;<input type="text" name="exercise" value="{{exerciseName}}" readonly>&nbsp;&nbsp;&nbsp;
-        Weight:  &nbsp;&nbsp;<input type="number" min="0" max="99999"name="weight" value="{{weight}}">&nbsp;&nbsp;&nbsp;
-        Reps:  &nbsp;&nbsp;<input type="number" min="0" max="50" name="reps" value="{{reps}}">&nbsp;&nbsp;&nbsp;
-        Sets:  &nbsp;&nbsp;<input type="number" min="0" max="10" name="sets" value="{{sets}}">&nbsp;&nbsp;&nbsp;
+        Weight:  &nbsp;&nbsp;<input required type="number" min="0" max="99999"name="weight" value="{{weight}}">&nbsp;&nbsp;&nbsp;
+        Reps:  &nbsp;&nbsp;<input required type="number" min="0" max="50" name="reps" value="{{reps}}">&nbsp;&nbsp;&nbsp;
+        Sets:  &nbsp;&nbsp;<input required type="number" min="0" max="10" name="sets" value="{{sets}}">&nbsp;&nbsp;&nbsp;
         <br><br>
     </form>
     {{/each}}

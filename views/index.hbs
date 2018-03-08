@@ -73,8 +73,10 @@
     <div id="rtn-container">
         {{#each rntAll}}
         <div class="rtn-thumbnail-item" data-search-route="{{routineId}}">
+            <a href="/routines/{{routineId}}">
             <img src="{{routinePic}}" class="cover">
             <p>{{routineName}}</p>
+            </a>
         </div>    
         {{/each}}
     </div>

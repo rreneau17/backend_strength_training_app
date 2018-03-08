@@ -11,9 +11,14 @@ const Routine_exercise = require('../models/routine_exercise');
 const Exercises = require('../models/exercises');
 
 router.get('/', function(req, res, next) {
-    let wrkAll = [];
+    let exerciseAll = [];
     var d = new Date();
     d.setDate(d.getDate() - 7);
+
+    Exercises.findAll().then(exercises => {
+        exerciseAll = exercises;
+    })
+
     Workouts.findAll({where: {date: {[Op.gt]: d}} 
     }).then (workouts => {
         let workoutPromises = workouts.map(workout => {
@@ -43,7 +48,12 @@ router.get('/', function(req, res, next) {
         console.log("about to Promise.all");
         Promise.all(workoutPromises).then (workoutActuals => {
             console.log('promise.all is working');
-            res.json(workoutActuals);
+            // res.json(workoutActuals);
+            res.render('results', {
+                workoutStr: JSON.stringify(workouts),
+                actualsStr: JSON.stringify(workoutActuals),
+                exerciseStr: JSON.stringify(exerciseAll)
+            })
             // let exercisePromises = workoutActuals.map(actualsArray=> {
             //     let exercisesArray = [];
             //     actualsArray.forEach(act => {
