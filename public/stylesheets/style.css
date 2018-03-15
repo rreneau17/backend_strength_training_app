@@ -236,32 +236,6 @@ th, td {
   padding-right: 50px;
 }
 
-.results-container {
-  flex: 1 1 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  padding: 50px;
-}
-
-.results-exercises {
-  width: 100%;
-  padding: 30px;
-}
-
-.results-exercises th {
-  font-size: 1.1em;
-}
-
-.results-exercises tr {
-  font-size: 1.3em;
-}
-
-th, td {
-  padding-top: 15px;
-  padding-right: 50px;
-}
-
 .button-routines {
   background-color: white;
   color: black;
@@ -277,7 +251,40 @@ th, td {
   padding: 50px;
 }
 
+.results-container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 50px;
+}
 
+.results-exercises {
+  width: 100%;
+  padding: 30px;
+}
+
+th, td {
+  padding-top: 15px;
+  padding-right: 50px;
+}
+
+.results-heading-tbl {
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 1.6em;
+}
+
+.actuals-heading-tbl {
+  font-weight: bold;
+  font-size: 1.3em;
+  margin-bottom: 20px;
+}
+
+.actuals-body-tbl {
+  font-size: 1.2em;
+  margin-bottom: 70px;
+}
 
 
 

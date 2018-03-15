@@ -62,7 +62,7 @@ function displayResults(woResults) {
     console.log(woResults);
     woResults.forEach(woResult => {
         var resHeadingTable = document.createElement('table');
-        resHeadingTable.setAttribute('id', 'results-heading-tbl');
+        resHeadingTable.setAttribute('class', 'results-heading-tbl');
         var resHeadingTH = resHeadingTable.createTHead();
         var resHeadingTR = resHeadingTH.insertRow(0);
         var resHeadingCell = resHeadingTR.insertCell(0)
@@ -75,32 +75,45 @@ function displayResults(woResults) {
 
         var actualsDiv = document.createElement('div');
         actualsDiv.setAttribute('class', 'actuals');
+        var actualsHeadingTbl = document.createElement('table');
+        actualsHeadingTbl.setAttribute('class', 'actuals-heading-tbl');
         var actualsTable = document.createElement('table');
-        var actualsHeading = actualsTable.createTHead();
+        actualsTable.setAttribute('class', 'actuals-body-tbl');
+        var actualsHeading = actualsHeadingTbl.createTHead();
         var actHeadingRow = actualsHeading.insertRow(0);
         var actHeadingCell1 = actHeadingRow.insertCell(0);
         var actHeadingCell2 = actHeadingRow.insertCell(1);
         var actHeadingCell3 = actHeadingRow.insertCell(2);
         var actHeadingCell4 = actHeadingRow.insertCell(3);
         actHeadingCell1.textContent = 'Exercise';
+        actHeadingCell1.setAttribute('style', 'width: 350px');
         actHeadingCell2.textContent = 'Weight';
+        actHeadingCell2.setAttribute('style', 'width: 150px');
         actHeadingCell3.textContent = 'Reps';
-        actHeadingCell4.textContent = 'Sets';
-
-        actualsDiv.appendChild(actualsTable);
-        reportHeadingContainer.appendChild(actualsDiv);
+        actHeadingCell3.setAttribute('style', 'width: 150px');
+        actHeadingCell4.textContent = 'Set Number';
+        actHeadingCell4.setAttribute('style', 'width: 200px');
 
         woResult.actuals.forEach((actual, i) => {
-            var actualsRow = actualsTable.insertRow(i+1);
+            
+            var actualsRow = actualsTable.insertRow(i);
             var actExName = actualsRow.insertCell(0);
             var actWeight = actualsRow.insertCell(1);
             var actReps = actualsRow.insertCell(2);
             var actSetNum = actualsRow.insertCell(3);
             actExName.textContent = actual.exerciseName;
+            actExName.setAttribute('style', 'width: 350px');
             actWeight.textContent = actual.weight;
+            actWeight.setAttribute('style', 'width: 150px');
             actReps.textContent = actual.reps;
+            actReps.setAttribute('style', 'width: 150px');
             actSetNum.textContent = actual.setNum;
+            actSetNum.setAttribute('style', 'width: 200px');
         })
+
+        actualsDiv.appendChild(actualsHeadingTbl);
+        actualsDiv.appendChild(actualsTable);
+        reportHeadingContainer.appendChild(actualsDiv);
 
 
     })
