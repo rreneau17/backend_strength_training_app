@@ -1,56 +1,6 @@
 var RTN_THUMBNAIL_ITEM_SEL = '.rtn-thumbnail-item';
 var rtnThumbnailItem = document.querySelectorAll(RTN_THUMBNAIL_ITEM_SEL);
 
-let routines = [{
-    id: 1,
-    routineName: "Basic Strength"
-    },
-    {
-        id: 2,
-        routineName: "The 9-Minute Strength Workout"
-    },
-    {
-        id: 3,
-        routineName: "Women's Body Weight Workout"
-    }
-]
-
-function printWrk() {
-    var woResults = workouts.map((workout, i) => {
-        let routineName;
-        routines.forEach(routine=> {
-            if(workout.routineId === routine.id) {
-                routineName = routine.routineName; 
-            }
-        })
-        var actualEx = actuals[i].map((actual) => {
-            let exerciseName;
-                exercises.forEach(exercise=> {
-                    if(actual.exerciseId === exercise.id) {
-                        exerciseName = exercise.exerciseName;
-                    }
-                })
-                return {
-                    weight: actual.actualWgt,
-                    reps: actual.actualReps,
-                    setNum: actual.setNum,
-                    exerciseName: exerciseName
-                }
-        })
-        return {
-            date: workout.date,
-            routineName: routineName,
-            actuals: actualEx
-        }
-    })
-    woResults.forEach(woResult => {
-        console.log(woResult.date, woResult.routineName);
-        woResult.actuals.forEach(actual => {
-            console.log(actual.exerciseName, actual.weight, actual.reps, actual.setNum);
-        })
-    })
-}
-
 function rtnListener() {
     rtnThumbnailItem.forEach(item => {
         item.addEventListener('click', function(event) {
@@ -104,11 +54,11 @@ function validateForm() {
 }
 
 function main() {
+    // console.log('console!!!!')
     // console.log(actuals);
     // console.log(workouts);
     // console.log(exercises);
     // console.log(routines);
-    printWrk();
     rtnListener();
     // subForms();
     // getInstructions();

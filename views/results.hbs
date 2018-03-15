@@ -8,6 +8,13 @@
 
 <div class="results-container">
     <div class="results-exercises">
+        <div class="actuals"></div>
+    </div>
+
+</div>
+
+{{!-- <div class="results-container">
+    <div class="results-exercises">
             <table>
                 <tr>
                     <th scope="col"><h3>Basic Strength  &nbsp;&nbsp;-  &nbsp;&nbsp;3/7/2018</h3></th>
@@ -341,11 +348,12 @@
                 </tr>
             </table>
     </div>
-</div>
+</div> --}}
 
 <script>
     let actuals = {{{actualsStr}}};
     let workouts = {{{workoutStr}}};
     let exercises = {{{exerciseStr}}}
 </script>
+<script src="/javascripts/results_dom.js"></script>
     
