@@ -107,6 +107,19 @@ router.get('/:routineId/edit', function(req, res, next) {
 })
 .post('/:routineId/active/edit', (req, res) => {
     console.log('we are editing active routine');
+
+    // inactivates the current active routine
+    if(req.body.active === 'true') {
+        Routines.findOne({
+            where: {active: true}
+        }).then(activeRoutine => {
+            return activeRoutine.updateAttributes({
+                active: false
+            })
+        });
+    }
+
+    // updates the routine with new edits
     Routines.findOne({
         where: {
             id: req.params.routineId
@@ -116,7 +129,7 @@ router.get('/:routineId/edit', function(req, res, next) {
         if(req.body.active === 'true') {
             return routines.updateAttributes({
                 active: true
-            }).then (() => res.json({success:true}))
+            }).then (() => res.json({success:true})) 
         } else {
             return routines.updateAttributes({
                 active: false
@@ -137,7 +150,8 @@ router.get('/:routineId/edit', function(req, res, next) {
         weight: req.body.weight,
         reps: req.body.reps,
         sets: req.body.sets
-      }).then (() => res.json({success:true}));
+      // }).then (() => res.json({success:true}))
+      }).then (() => res.send({redirect: `/routines/${req.params.routineId}`}))
     })
   })
 

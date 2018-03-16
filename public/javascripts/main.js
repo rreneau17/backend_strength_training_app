@@ -15,30 +15,55 @@ function rtnListener() {
 
 function subForms() {
     console.log('form is being submitted');
-    let counter = 0;
-    let lengthForm = $("form").length;
-    console.log(lengthForm);
-    $("form").each((i, form) => {
-        // console.log(counter++);
-        // console.log(form);
-        // $(form).submit();
-        // console.log($(form).attr('action'));
-        formURL=$(form).attr('action');
-        $.ajax({
-            url: formURL,
-            type: "post",
-            data: $(form).serialize(),
-            success: function(d) {
-                counter++;
-                console.log(counter);
-                if (counter === lengthForm) {
-                    alert("Post successful!");
+    let postCheck = wrongEdits();
+    console.log(postCheck);
+    if (postCheck) {
+        alert('Values must be an integer and not blank.  Try again.');
+    } else {
+        let counter = 0;
+        let lengthForm = $("form").length;
+        // console.log(lengthForm);
+        $("form").each((i, form) => {
+            console.log(form);
+            formURL=$(form).attr('action');
+            $.ajax({
+                url: formURL,
+                type: "post",
+                data: $(form).serialize(),
+                success: function(data) {
+                    console.log(data);
+                    counter++;
+                    // console.log(counter);
+                    if (counter === lengthForm) {
+                        alert("Your edits were posted successfully!");
+                    }
+                    if (typeof data.redirect == 'string') {
+                        window.location = data.redirect
+                    }
                 }
-            }
-        });
-    })
+            });   
+        })
+    }
 }
 
+// will return false if any of the edit values in the form are invalid
+function wrongEdits () {
+    let wrongVal = false;
+    $('input[data-edits="editVals"]').each(function( index ) {
+        let editValNum = Number($( this ).val());
+        let editValue = $( this ).val()
+        // console.log( index + ": " + editValue);
+        let editInt = Number.isInteger(editValNum);
+        if (editValue === '' || !editInt) {
+            wrongVal = true;
+        } 
+        // console.log(wrongVal);
+    });
+    return wrongVal;
+}
+
+
+// opens the selected routine instructions on a separate browser window
 function getInstructions(url) {
     console.log('function is working');
     window.open(url, '_blank');
@@ -46,10 +71,11 @@ function getInstructions(url) {
 
 function validateForm() {
     console.log('validate triggered');
-    var x = document.forms["rtnForm"]["reps"].value;
-    if (isNaN(x) || x < 1 || x > 50) {
-        alert("Input an integer between 1 and 50");
-        return false
+    var x = document.forms["editRtn"]["weight"].value;
+    console.log(x);
+    if (x == "") {
+        alert("Weight must be filled out");
+        return false;
     }
 }
 
