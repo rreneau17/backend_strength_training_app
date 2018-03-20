@@ -18,7 +18,7 @@ function subForms() {
     let postCheck = wrongEdits();
     console.log(postCheck);
     if (postCheck) {
-        alert('Values must be an integer and not blank.  Try again.');
+        alert('Values can not be blank and must be a positive integer.  Try again.');
     } else {
         let counter = 0;
         let lengthForm = $("form").length;
@@ -54,7 +54,7 @@ function wrongEdits () {
         let editValue = $( this ).val()
         // console.log( index + ": " + editValue);
         let editInt = Number.isInteger(editValNum);
-        if (editValue === '' || !editInt) {
+        if (editValue === '' || !editInt || editValNum < 0) {
             wrongVal = true;
         } 
         // console.log(wrongVal);
